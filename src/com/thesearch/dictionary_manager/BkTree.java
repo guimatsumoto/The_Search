@@ -1,5 +1,14 @@
 /**
- * Created by guilhermematsumoto on 22/02/17.
+ * BkTree class, main data structure to store the words
+ * of the english dictionary.
+ * In a first moment stores only the words with their variations,
+ * e.g. verbs conjugation, capital letter initialization...
+ * Later, stores word frequencies as well.
+ *
+ *
+ * @authors  MATSUMOTO Guilherme, PETRY Gabriel
+ * @version 1.0
+ * @since   2017-01-21
  */
 
 package com.thesearch.dictionary_manager;
@@ -34,6 +43,39 @@ public final class BkTree {
         }
     }
 
+    protected void setFreq(String word, Double freq){
+        if (word == null) throw new NullPointerException();
+        if (freq == null) throw new NullPointerException();
+
+        Node node = this._root;
+        while(!node.getElement().equals(word)){
+            int dist = levDist(node.getElement(), word);
+            Node parent = node;
+            node = parent.getChildrenNode(dist);
+            if (node == null){
+                break;
+            }
+        }
+        if (node != null) {
+            node.setFrequency(freq);
+            //System.out.println(node.getElement() + " -> " + node.getFrequency());
+        }
+
+        node = this._root;
+        while(!node.getElement().toLowerCase().equals(word)){
+            int dist = levDist(node.getElement(), word);
+            Node parent = node;
+            node = parent.getChildrenNode(dist);
+            if (node == null){
+                break;
+            }
+        }
+        if (node != null){
+            node.setFrequency(freq);
+        }
+
+    }
+
     public Node getRoot(){
         return this._root;
     }
@@ -63,16 +105,22 @@ class Node
  */
 final class Node{
     private String _element;
+    private double _frequency;
     final Map<Integer, Node> childrenNode = new HashMap<>();
 
     public Node(String e){
         if (e == null) throw new NullPointerException();
         this._element = e;
+        this._frequency = 0.0;
     }
 
     public String getElement(){
         return this._element;
     }
+
+    public double getFrequency() {return this._frequency;}
+
+    public void setFrequency(double freq) {this._frequency = freq;}
 
     public Node getChildrenNode(Integer dist){
         return childrenNode.get(dist);

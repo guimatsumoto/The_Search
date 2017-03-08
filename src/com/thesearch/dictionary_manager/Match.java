@@ -1,3 +1,14 @@
+/**
+ * Match class, made public.
+ * Used to store search results in Dictionary.java
+ * and also to receive search results in the main class
+ *
+ *
+ * @authors  MATSUMOTO Guilherme, PETRY Gabriel
+ * @version 1.0
+ * @since   2017-01-21
+ */
+
 package com.thesearch.dictionary_manager;
 
 /**
