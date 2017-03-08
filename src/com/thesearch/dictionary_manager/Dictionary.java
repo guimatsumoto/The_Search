@@ -12,6 +12,7 @@ import static java.lang.String.format;
 import static java.lang.Math.max;
 
 import static com.thesearch.dictionary_manager.BkTree.levDist;
+import com.thesearch.dictionary_manager.Match;
 
 /**
  * Created by guilhermematsumoto on 20/02/17.
@@ -75,29 +76,6 @@ public class Dictionary {
         }
 
         return matches;
-    }
-
-    public static final class Match{
-        private final String _match;
-        private final int _dist;
-
-        public Match(String word, int distance){
-            if (word == null) throw new NullPointerException();
-            if (distance < 0) throw new IllegalArgumentException("Distance maximale doit etre positif");
-
-            this._match = word;
-            this._dist = distance;
-        }
-
-        public String getMatch(){
-            return _match;
-        }
-
-        public int getDist(){
-            return _dist;
-        }
-
-
     }
 
 }
