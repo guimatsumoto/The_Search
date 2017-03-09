@@ -15,15 +15,23 @@ package com.thesearch.dictionary_manager;
  * Created by guilhermematsumoto on 07/03/17.
  */
 public class Match {
-    private final String _match;
-    private final int _dist;
+    private String _match;
+    private int _dist;
+    private Double _freq;
 
-    public Match(String word, int distance){
+    public Match(String word, int distance, Double freq){
         if (word == null) throw new NullPointerException();
         if (distance < 0) throw new IllegalArgumentException("Distance maximale doit etre positif");
 
         this._match = word;
         this._dist = distance;
+        this._freq = freq;
+    }
+
+    public void update(String word, int distance, Double freq){
+        this._match = word;
+        this._dist = distance;
+        this._freq = freq;
     }
 
     public String getMatch(){
@@ -33,4 +41,6 @@ public class Match {
     public int getDist(){
         return _dist;
     }
+
+    public Double getFreq() {return _freq;}
 }
