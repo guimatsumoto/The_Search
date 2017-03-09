@@ -65,6 +65,44 @@ public class Dictionary {
         }
     }
 
+    public String correctQuery(String query){
+        String proposition = "";
+
+        String[] words = query.split("\\W+");
+        for (int i = 0; i < words.length; ++i){
+            words[i] = findMostSuitableCandidate(words[i]);
+        }
+
+        proposition = Arrays.toString(words).replace(", ", " ").replaceAll("[\\[\\]]", "");
+
+        return proposition;
+    }
+
+    /**
+     * This functions will not analyse the query semantically,
+     * it will just analyse the ortographe and word frequency,
+     * the suggestion algorithm is temporary.
+     */
+    private String findMostSuitableCandidate(String word){
+        int dist = 0;
+        Set<Match> m = search(word, dist);
+        System.out.println(word);
+        if (!m.isEmpty()) return word;
+        dist += 1;
+        while (m.isEmpty()){
+            m = search(word, dist);
+        }
+        Match candidate = new Match("", Integer.MAX_VALUE, 0.0);
+        Match res = new Match("", Integer.MAX_VALUE, -1.0);
+        Iterator<Match> it = m.iterator();
+        while (it.hasNext()){
+            candidate = it.next();
+            if ((candidate.getDist() <= res.getDist()) && (candidate.getFreq() > res.getFreq()))
+                res = candidate;
+        }
+        return res.getMatch();
+    }
+
     public static HashMap<String, Double> calculateFrequencies(String FreqFile){
         Path path = Paths.get("src/com/thesearch/dictionary_manager", FreqFile);
         BufferedReader br = null;
@@ -143,10 +181,11 @@ public class Dictionary {
         while (!queue.isEmpty()){
             Node node = queue.remove();
             String mot = node.getElement();
+            Double freq = node.getFrequency();
             int distance = levDist(mot, word);
 
             if (distance < 0) throw new IllegalArgumentException(format("Distance (%d) entre les mots (%s) et (%s)", distance, word, mot));
-            if (distance <= maxDist) matches.add(new Match(mot, distance));
+            if (distance <= maxDist) matches.add(new Match(mot, distance, freq));
 
             int distSearchMin = max(distance - maxDist, 0);
             int distSearchMax = distance + maxDist;
