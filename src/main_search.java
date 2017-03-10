@@ -23,6 +23,13 @@ public class main_search {
         long elapsedTime = (System.nanoTime() - start);
         System.out.println("Time to initialize dictionary: " + elapsedTime);
 
+        //Set<Match> matches = dict.search("pasworf", 3);
+        //for (Iterator<Match> it = matches.iterator(); it.hasNext(); ){
+        //    Match m = it.next();
+        //    System.out.println("word: " + m.getMatch() + " - dist: " + m.getDist());
+        //}
+
+
         BufferedReader br = null;
 
         try{
@@ -52,11 +59,6 @@ public class main_search {
             }
         }
 
-        //Set<Match> matches = Dict.search("ornamnetal", 3);
-        //for (Iterator<Match> it = matches.iterator(); it.hasNext(); ){
-        //    Match m = it.next();
-        //    System.out.println("word: " + m.getMatch() + " - dist: " + m.getDist());
-        //}
 
         //start = System.nanoTime();
         //Dictionary.calculateFrequencies("big.txt");
