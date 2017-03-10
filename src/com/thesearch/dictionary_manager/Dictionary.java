@@ -85,19 +85,27 @@ public class Dictionary {
      */
     private String findMostSuitableCandidate(String word){
         int dist = 0;
-        Set<Match> m = search(word, dist);
+        Set<Match> m = search(word.toLowerCase(), dist);
         System.out.println(word);
         if (!m.isEmpty()) return word;
         dist += 1;
         while (m.isEmpty()){
-            m = search(word, dist);
+            m = search(word.toLowerCase(), dist);
+            dist++;
         }
+        Set<Match> aux = search(word.toLowerCase(), dist);
         Match candidate = new Match("", Integer.MAX_VALUE, 0.0);
         Match res = new Match("", Integer.MAX_VALUE, -1.0);
         Iterator<Match> it = m.iterator();
         while (it.hasNext()){
             candidate = it.next();
             if ((candidate.getDist() <= res.getDist()) && (candidate.getFreq() > res.getFreq()))
+                res = candidate;
+        }
+        it = aux.iterator();
+        while (it.hasNext()){
+            candidate = it.next();
+            if (candidate.getFreq() >= 1000*res.getFreq())
                 res = candidate;
         }
         return res.getMatch();
