@@ -7,6 +7,15 @@
  * @since   2017-01-21
  */
 
+/**
+ * Note to self: To correct and improve accuracy we need to:
+ *      1) fix the dictionary, that right now contains lots of wrog words (without apostrophes)
+ *      2) also we need to evaluate more texts, because right now the frequencies are all fucked up
+ *      3) we need to find a way to better evaluate words with apostrophes, what I mean is, we need to find a way to considerer we will as the same as we'll
+ *      4) need also to correct letter capitalization, specially with "I" because it generates further errors.
+ *      5) create a self generated dictionary that includes frequencies and updates itself when users make searches
+ */
+
 import com.thesearch.dictionary_manager.Dictionary;
 import com.thesearch.dictionary_manager.Match;
 
@@ -23,11 +32,11 @@ public class main_search {
         long elapsedTime = (System.nanoTime() - start);
         System.out.println("Time to initialize dictionary: " + elapsedTime);
 
-        //Set<Match> matches = dict.search("pasworf", 3);
-        //for (Iterator<Match> it = matches.iterator(); it.hasNext(); ){
-        //    Match m = it.next();
-        //    System.out.println("word: " + m.getMatch() + " - dist: " + m.getDist());
-        //}
+        Set<Match> matches = dict.search("wound't", 2);
+        for (Iterator<Match> it = matches.iterator(); it.hasNext(); ){
+            Match m = it.next();
+            System.out.println("word: " + m.getMatch() + " - dist: " + m.getDist() + " - freq: " + m.getFreq());
+        }
 
 
         BufferedReader br = null;

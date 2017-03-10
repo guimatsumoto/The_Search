@@ -68,7 +68,7 @@ public class Dictionary {
     public String correctQuery(String query){
         String proposition = "";
 
-        String[] words = query.split("\\W+");
+        String[] words = query.split("[^\\p{L}0-9']+");
         for (int i = 0; i < words.length; ++i){
             words[i] = findMostSuitableCandidate(words[i]);
         }
@@ -85,15 +85,16 @@ public class Dictionary {
      */
     private String findMostSuitableCandidate(String word){
         int dist = 0;
-        Set<Match> m = search(word.toLowerCase(), dist);
+        Set<Match> m = search(word, dist);
         System.out.println(word);
-        if (!m.isEmpty()) return word;
+        boolean foundOnDistZero = false;
+        if (!m.isEmpty()) {foundOnDistZero = true;}
         dist += 1;
         while (m.isEmpty()){
-            m = search(word.toLowerCase(), dist);
+            m = search(word, dist);
             dist++;
         }
-        Set<Match> aux = search(word.toLowerCase(), dist);
+        Set<Match> aux = search(word, dist);
         Match candidate = new Match("", Integer.MAX_VALUE, 0.0);
         Match res = new Match("", Integer.MAX_VALUE, -1.0);
         Iterator<Match> it = m.iterator();
@@ -102,15 +103,22 @@ public class Dictionary {
             if ((candidate.getDist() <= res.getDist()) && (candidate.getFreq() > res.getFreq()))
                 res = candidate;
         }
+        /**
+         * We're still gonna check the next distance
+         */
         it = aux.iterator();
         while (it.hasNext()){
             candidate = it.next();
-            if (candidate.getFreq() >= 1000*res.getFreq())
+            if ((candidate.getFreq() >= 100*res.getFreq()) && (!foundOnDistZero))
                 res = candidate;
         }
         return res.getMatch();
     }
 
+    /**
+     * This function will calculate word frequencies based on the file
+     * passed as parameter.
+     */
     public static HashMap<String, Double> calculateFrequencies(String FreqFile){
         Path path = Paths.get("src/com/thesearch/dictionary_manager", FreqFile);
         BufferedReader br = null;
@@ -121,13 +129,14 @@ public class Dictionary {
             br = Files.newBufferedReader(path, ENCODING);
             String Line = null;
             while((Line = br.readLine()) != null){
-                LineWords = Line.split("\\W+");
+                LineWords = Line.split("[^\\p{L}0-9']+");
                 WordCount += LineWords.length;
+
                 for(int i = 0; i < LineWords.length; ++i){
                     /**
                      * Treating a few english contractions, the rest of them would require
                      * a semantic analysis, which we will probably do later
-                     */
+
                     switch (LineWords[i]){
                         case "ll":  LineWords[i] = "will";
                                     break;
@@ -140,6 +149,7 @@ public class Dictionary {
                         case "t":   LineWords[i] = "not";
                             break;
                     }
+                     */
 
                     if (FreqMap.containsKey(LineWords[i]))
                         FreqMap.put(LineWords[i], FreqMap.get(LineWords[i]) + 1.0);
