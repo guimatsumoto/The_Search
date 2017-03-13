@@ -9,7 +9,7 @@
 
 /**
  * Note to self: To correct and improve accuracy we need to:
- *      1) fix the dictionary, that right now contains lots of wrog words (without apostrophes)
+ * done 1) fix the dictionary, that right now contains lots of wrog words (without apostrophes)
  *      2) also we need to evaluate more texts, because right now the frequencies are all fucked up
  *      3) we need to find a way to better evaluate words with apostrophes, what I mean is, we need to find a way to considerer we will as the same as we'll
  *      4) need also to correct letter capitalization, specially with "I" because it generates further errors.
@@ -28,7 +28,7 @@ import java.io.InputStreamReader;
 public class main_search {
     public static void main(String[] args){
         long start = System.nanoTime();
-        Dictionary dict = new Dictionary("english_dictionary.txt", "big.txt");
+        Dictionary dict = new Dictionary("english.txt", "big.txt");
         long elapsedTime = (System.nanoTime() - start);
         System.out.println("Time to initialize dictionary: " + elapsedTime);
 
