@@ -198,6 +198,10 @@ public class Dictionary {
         return FreqMap;
     }
 
+    private void calculateStaticOccurences(String file){
+
+    }
+
     public BkTree getTree(){
         return this._dict;
     }
