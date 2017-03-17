@@ -25,6 +25,14 @@ import static java.lang.Math.max;
 import static com.thesearch.dictionary_manager.BkTree.levDist;
 import com.thesearch.dictionary_manager.Match;
 
+/**
+ * class Dictionary
+ * Stores a dictionary and all its functions.
+ * Initially, the words are found in a dictionary document, generated with scowl (its a free spell checking dynamic dictionary. The frequencies, on the other
+ * hand, are obtained from a file containing huge amounts of english texts, from all fields on spoken/written english.
+ * Soon, to improve performance, we will need to instead of calculating occurences every time the dicitionary is created, we store occurences in the
+ * dictionary file and after the last word we put the total number of words, so we can get frequencies for all words.
+ */
 public class Dictionary {
     private BkTree _dict = new BkTree();
     final static Charset ENCODING = StandardCharsets.UTF_8;
@@ -65,6 +73,13 @@ public class Dictionary {
         }
     }
 
+    /**
+     * correctString
+     * @param query
+     * @return
+     * Given a string it will correct it.
+     * It is still rudimentary, so we will only correct based on frequency and distance.
+     */
     public String correctQuery(String query){
         String proposition = "";
 
@@ -109,7 +124,7 @@ public class Dictionary {
         it = aux.iterator();
         while (it.hasNext()){
             candidate = it.next();
-            if ((candidate.getFreq() >= 1000*res.getFreq()) && (!foundOnDistZero))
+            if ((candidate.getFreq() >= 100000*res.getFreq()) && (!foundOnDistZero))
                 res = candidate;
         }
         return res.getMatch();
