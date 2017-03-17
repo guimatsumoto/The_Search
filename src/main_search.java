@@ -32,7 +32,7 @@ public class main_search {
         long elapsedTime = (System.nanoTime() - start);
         System.out.println("Time to initialize dictionary: " + elapsedTime);
 
-        Set<Match> matches = dict.search("wound't", 2);
+        Set<Match> matches = dict.search("wom't", 2);
         for (Iterator<Match> it = matches.iterator(); it.hasNext(); ){
             Match m = it.next();
             System.out.println("word: " + m.getMatch() + " - dist: " + m.getDist() + " - freq: " + m.getFreq());
