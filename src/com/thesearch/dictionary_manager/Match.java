@@ -13,6 +13,8 @@ package com.thesearch.dictionary_manager;
 
 /**
  * Created by guilhermematsumoto on 07/03/17.
+ * class Match
+ * Stores a match, composed by a word, a frequency and a distance to the searched word.
  */
 public class Match {
     private String _match;

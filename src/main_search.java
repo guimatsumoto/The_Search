@@ -10,7 +10,7 @@
 /**
  * Note to self: To correct and improve accuracy we need to:
  * done 1) fix the dictionary, that right now contains lots of wrog words (without apostrophes)
- *      2) also we need to evaluate more texts, because right now the frequencies are all fucked up
+ * done 2) also we need to evaluate more texts, because right now the frequencies are all fucked up // not entirely necessary, will disable further verification
  *      3) we need to find a way to better evaluate words with apostrophes, what I mean is, we need to find a way to considerer we will as the same as we'll
  *      4) need also to correct letter capitalization, specially with "I" because it generates further errors.
  *      5) create a self generated dictionary that includes frequencies and updates itself when users make searches
