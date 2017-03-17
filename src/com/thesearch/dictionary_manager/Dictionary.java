@@ -109,7 +109,7 @@ public class Dictionary {
         it = aux.iterator();
         while (it.hasNext()){
             candidate = it.next();
-            if ((candidate.getFreq() >= 100*res.getFreq()) && (!foundOnDistZero))
+            if ((candidate.getFreq() >= 1000*res.getFreq()) && (!foundOnDistZero))
                 res = candidate;
         }
         return res.getMatch();
