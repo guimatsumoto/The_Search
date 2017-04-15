@@ -1,17 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="33dc3c0b-45d2-498a-8d19-d0b290efe6d4" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/jsoup_1_10_2.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/thesearch/dictionary_manager/Suggestion.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/thesearch/webDealer/googleExtractor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/the_search/com/thesearch/dictionary_manager/Dictionary.class" afterPath="$PROJECT_DIR$/out/production/the_search/com/thesearch/dictionary_manager/Dictionary.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/the_search/main_search.class" afterPath="$PROJECT_DIR$/out/production/the_search/main_search.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/thesearch/dictionary_manager/Dictionary.java" afterPath="$PROJECT_DIR$/src/com/thesearch/dictionary_manager/Dictionary.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main_search.java" afterPath="$PROJECT_DIR$/src/main_search.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/the_search.iml" afterPath="$PROJECT_DIR$/the_search.iml" />
-    </list>
+    <list default="true" id="33dc3c0b-45d2-498a-8d19-d0b290efe6d4" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -84,8 +74,8 @@
       <file leaf-file-name="main_search.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main_search.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="56" column="18" lean-forward="false" selection-start-line="56" selection-start-column="18" selection-end-line="56" selection-end-column="18" />
+            <state relative-caret-position="390">
+              <caret line="59" column="22" lean-forward="true" selection-start-line="59" selection-start-column="22" selection-end-line="59" selection-end-column="22" />
               <folding>
                 <element signature="e#0#3690#0" expanded="true" />
                 <element signature="imports" expanded="true" />
@@ -1077,8 +1067,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main_search.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="56" column="18" lean-forward="false" selection-start-line="56" selection-start-column="18" selection-end-line="56" selection-end-column="18" />
+        <state relative-caret-position="390">
+          <caret line="59" column="22" lean-forward="true" selection-start-line="59" selection-start-column="22" selection-end-line="59" selection-end-column="22" />
           <folding>
             <element signature="e#0#3690#0" expanded="true" />
             <element signature="imports" expanded="true" />
