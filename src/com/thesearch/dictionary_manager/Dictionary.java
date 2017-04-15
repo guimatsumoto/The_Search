@@ -24,6 +24,7 @@ import static java.lang.Math.max;
 
 import static com.thesearch.dictionary_manager.BkTree.levDist;
 import com.thesearch.dictionary_manager.Match;
+import com.thesearch.dictionary_manager.Suggestion;
 
 /**
  * class Dictionary
@@ -79,18 +80,28 @@ public class Dictionary {
      * @return
      * Given a string it will correct it.
      * It is still rudimentary, so we will only correct based on frequency and distance.
+     * For the correction of the first word of a phrase we will not consider "decapitalizing" a word a correction, as our dicionary doesn't contain all
+     * words capitalized. ("decapitalization": Yes -> yes, as our dictionary doesn't contain the word Yes, but it contains Yes)
      */
-    public String correctQuery(String query){
+    public Suggestion correctQuery(String query){
         String proposition = "";
 
+        boolean hasChanges = false; //check if any word was corrected;
         String[] words = query.split("[^\\p{L}0-9']+");
+        String[] substitutes = new String[words.length];
         for (int i = 0; i < words.length; ++i){
-            words[i] = findMostSuitableCandidate(words[i]);
+            substitutes[i] = findMostSuitableCandidate(words[i]);
+            if (i == 0 && !(words[i].toLowerCase().equals(substitutes[i])) && !(words[i].equals(substitutes[i]))) //First word of a phrase can start with a capital letter even if it's not a proper name
+                hasChanges = true;
+            if (!(words[i].equals(substitutes[i])) && i != 0) //Other words will only start with a capital letter if they are proper names
+                hasChanges = true;
         }
 
-        proposition = Arrays.toString(words).replace(", ", " ").replaceAll("[\\[\\]]", "");
+        proposition = Arrays.toString(substitutes).replace(", ", " ").replaceAll("[\\[\\]]", "");
 
-        return proposition;
+        Suggestion sugg = new Suggestion(proposition, hasChanges);
+
+        return sugg;
     }
 
     /**
@@ -101,8 +112,10 @@ public class Dictionary {
     private String findMostSuitableCandidate(String word){
         int dist = 0;
         Set<Match> m = search(word, dist);
-        System.out.println(word);
+        //System.out.println(word);
         boolean foundOnDistZero = false;
+        if (!m.isEmpty()) {foundOnDistZero = true;}
+        m = search(word.toLowerCase(), dist);
         if (!m.isEmpty()) {foundOnDistZero = true;}
         dist += 1;
         while (m.isEmpty()){
@@ -127,6 +140,8 @@ public class Dictionary {
             if ((candidate.getFreq() >= 100000*res.getFreq()) && (!foundOnDistZero))
                 res = candidate;
         }
+        if (foundOnDistZero)
+            return word;
         return res.getMatch();
     }
 
@@ -172,7 +187,7 @@ public class Dictionary {
                         FreqMap.put(LineWords[i], 1.0);
                 }
             }
-            System.out.println("Unique word count: " + FreqMap.size()    );
+            //System.out.println("Unique word count: " + FreqMap.size()    );
         }catch(IOException e){
             System.out.println("La lecture de l'archive a echoue");
         } finally {
