@@ -18,6 +18,8 @@
 
 import com.thesearch.dictionary_manager.Dictionary;
 import com.thesearch.dictionary_manager.Match;
+import com.thesearch.dictionary_manager.Suggestion;
+import com.thesearch.webDealer.googleExtractor;
 
 import java.util.Set;
 import java.util.*;
@@ -27,19 +29,23 @@ import java.io.InputStreamReader;
 
 public class main_search {
     public static void main(String[] args){
+        //Time measurement code, used to measure dictionary creation time.
+
         long start = System.nanoTime();
         Dictionary dict = new Dictionary("english.txt", "big.txt");
         long elapsedTime = (System.nanoTime() - start);
-        System.out.println("Time to initialize dictionary: " + elapsedTime);
-
+        //System.out.println("Time to initialize dictionary: " + elapsedTime);
+        /*
         Set<Match> matches = dict.search("wom't", 2);
         for (Iterator<Match> it = matches.iterator(); it.hasNext(); ){
             Match m = it.next();
             System.out.println("word: " + m.getMatch() + " - dist: " + m.getDist() + " - freq: " + m.getFreq());
         }
+        */
 
-
+        googleExtractor extractor = new googleExtractor();
         BufferedReader br = null;
+        String googleSugg = "";
 
         try{
             br = new BufferedReader(new InputStreamReader(System.in));
@@ -48,12 +54,23 @@ public class main_search {
             while (true) {
                 System.out.println("Type [/Q] to quit or type a query to search: ");
                 query = br.readLine();
-                System.out.println();
-                if (query.equals("[/Q]"))
+                //System.out.println();
+                if (query.equals("/Q"))
                     break;
                 else {
-                    String prop = dict.correctQuery(query);
-                    System.out.println("Did you mean: " + prop + "?");
+                    extractor.generateURL(query);
+                    Suggestion prop = dict.correctQuery(query);
+                    googleSugg = extractor.extractSuggestion();
+                    if (prop.getChanges())
+                        System.out.println("We suggest : " + prop.getSugg());
+                    else
+                        System.out.println("We think your query is correct");
+                    if ((googleSugg != ""))
+                        System.out.println("Google suggested: " + googleSugg);
+                    else
+                        System.out.println("Google thinks your query is correct");
+
+                    System.out.println();
                 }
             }
         }catch(IOException e){
