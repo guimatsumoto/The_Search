@@ -6,6 +6,7 @@ import com.thesearch.dictionary_manager.Suggestion;
 import com.thesearch.webDealer.googleExtractor;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.NumberFormat;
@@ -30,6 +31,13 @@ public class searchGui {
     private JTextPane googleNumberOfResultsTextPanel;
     private JLabel myNumberOfResultsPanel;
     private JLabel googleNumberOfResultsPanel;
+    private JPanel menuPanel;
+    private JPanel namePanel;
+    private JLabel nameLabel;
+
+    private JMenuBar mainMenuBar;
+    private JMenu file, dict;
+    private JMenuItem helpMeMenuItem, exitMenuItem, createFreqDictMenuItem, selectDictMenuItem;
 
     private Dictionary _dict;
     private googleExtractor _extractor;
@@ -37,6 +45,40 @@ public class searchGui {
     public searchGui() {
         _dict = new Dictionary("english.txt", "big.txt");
         _extractor = new googleExtractor();
+
+        menuPanel.setLayout(new BorderLayout());
+
+        mainMenuBar = new JMenuBar();
+
+        file = new JMenu("File");
+        dict = new JMenu("Dictionary");
+
+        helpMeMenuItem = new JMenuItem("Help me");
+        //file.add(helpMeMenuItem);
+        exitMenuItem = new JMenuItem("Exit");
+        file.add(exitMenuItem);
+        createFreqDictMenuItem = new JMenuItem("Create new frequency dictionary");
+        dict.add(createFreqDictMenuItem);
+        selectDictMenuItem = new JMenuItem("Select working dictionary");
+        dict.add(selectDictMenuItem);
+
+        mainMenuBar.add("fileMenu", file);
+        //mainMenuBar.add("dictMenu", dict);
+        menuPanel.add(mainMenuBar);
+
+        helpMeMenuItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+
+        exitMenuItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.exit(0);
+            }
+        });
 
         /**
          * at every button click we perform a dictionary correction function, as well as a google suggestion extraction.
@@ -89,6 +131,7 @@ public class searchGui {
         frame.setContentPane(new searchGui().mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
+        frame.setLocationRelativeTo(null); //centering the window
         frame.setVisible(true);
 
     }
