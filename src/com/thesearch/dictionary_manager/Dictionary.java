@@ -10,10 +10,8 @@
  */
 
 package com.thesearch.dictionary_manager;
+import java.io.*;
 import java.util.*;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.Files;
@@ -41,6 +39,40 @@ public class Dictionary {
     final static Charset ENCODING = StandardCharsets.UTF_8;
 
     public Dictionary(String FileName, String FreqFile) {
+
+        //createFreqDict("english.txt", "big-v2.txt", "dictfreq.txt");
+
+        initializeDictWithFreq("dictfreq.txt");
+    }
+
+    private void initializeDictWithFreq(String dictFreqFile){
+        Path path = Paths.get("src/com/thesearch/dictionary_manager", dictFreqFile);
+        BufferedReader br = null;
+        _dict = new BkTree();
+        String[] words;
+
+        try {
+            br = Files.newBufferedReader(path, ENCODING);
+            String Line = br.readLine();
+            double wordCount = Double.parseDouble(Line);
+            while ((Line = br.readLine()) != null) {
+                words = Line.split(" ");
+                _dict.add(words[0]);
+                _dict.setFreq(words[0], Double.parseDouble(words[1])/wordCount);
+            }
+        } catch (IOException e) {
+            System.out.println("La lecture de l'archive a echoue");
+        } finally {
+            try {
+                if (br != null)
+                    br.close();
+            } catch (IOException e) {
+                System.out.println("La fermeture de l'archive a echoue");
+            }
+        }
+    }
+
+    private void initializeDictOld(String FileName, String FreqFile){
         Path path = Paths.get("src/com/thesearch/dictionary_manager", FileName);
         BufferedReader br = null;
         /**
@@ -239,4 +271,100 @@ public class Dictionary {
         return matches;
     }
 
+
+    /**
+     * createFreqDict
+     * @param dictFile
+     * @param freqFile
+     * @param freqDictFile
+     *
+     * Receives a dictionary of words, a training sequence (the gigantic text) and the name of a file to be the new freq+words dict.
+     * This funcition will copy all words from dictFile into freqDictFile and add the frequences calculated through freqFile.
+     * The format of the new dictionary will be <word> <number of occurrences>, and the last word is gonna be the total number of words
+     */
+    public void createFreqDict(String dictFile, String freqFile, String freqDictFile){
+        Path path = Paths.get("src/com/thesearch/dictionary_manager", dictFile);
+        BufferedReader br = null;
+        BkTree bk = new BkTree();
+        HashMap<String, Double> FreqMap = new HashMap<>();
+        /**
+         * First part of this function, simply stores all the different words,
+         * all of which are initialized with frequency zero.
+         */
+        try {
+            br = Files.newBufferedReader(path, ENCODING);
+            String Line = null;
+            while ((Line = br.readLine()) != null) {
+                bk.add(Line);
+                FreqMap.put(Line, 0.0);
+            }
+        } catch (IOException e) {
+            System.out.println("Failed to read the file");
+        } finally {
+            try {
+                if (br != null)
+                    br.close();
+            } catch (IOException e) {
+                System.out.println("Failed to close the file");
+            }
+        }
+
+        path = Paths.get("src/com/thesearch/dictionary_manager", freqFile);
+        br = null;
+        int WordCount = 0;
+        String[] LineWords;
+        try{
+            br = Files.newBufferedReader(path, ENCODING);
+            String Line = null;
+            while((Line = br.readLine()) != null){
+                LineWords = Line.split("[^\\p{L}0-9']+");
+                Set<Match> m = new HashSet<>();
+                for(int i = 0; i < LineWords.length; ++i) {
+                    m = bk.search(LineWords[i], 0);
+                    if (!(m.isEmpty())) {
+                        WordCount++;
+                        FreqMap.put(LineWords[i], FreqMap.get(LineWords[i]) + 1.0);
+                    }
+                }
+
+            }
+            //System.out.println("Unique word count: " + FreqMap.size()    );
+        }catch(IOException e){
+            System.out.println("Failed to read the file");
+        } finally {
+            try{
+                if (br != null)
+                    br.close();
+            }catch(IOException e){
+                System.out.println("Failed to close the file");
+            }
+        }
+
+        BufferedWriter bw = null;
+        path = Paths.get("src/com/thesearch/dictionary_manager", freqDictFile);
+        try{
+            bw = Files.newBufferedWriter(path, ENCODING);
+            String Line = "";
+
+            Iterator it = FreqMap.entrySet().iterator();
+            bw.write(Double.toString(WordCount) + "\n");
+            while (it.hasNext()){
+                Map.Entry<String, Double> pair = (Map.Entry)it.next();
+
+                Line = pair.getKey() + " " + pair.getValue().toString() + "\n";
+
+                bw.write(Line);
+            }
+        }catch(IOException e){
+            System.out.println("Failed to open the file");
+        }finally {
+            try{
+                if (bw != null)
+                    bw.close();
+            }catch(IOException e){
+                System.out.println("Failed to close the file");
+            }
+        }
+
+    }
 }

@@ -96,24 +96,30 @@ public class googleExtractor {
     public int extractNumberOfResults(String query){
         String body = "";
         generateFinalURL(query);
-        int results = -1;
+        int results = 0;
         try {
             Document doc = Jsoup.connect(_url).get();
             if ((doc.select("div#resultStats").first() == null) || !(doc.select("div#resultStats").first().hasText()) || (doc.select("div#resultStats").first().text() == "") || (doc.select("div#resultStats").first().text() == null))
-                return 0;
+                return -1;
             Element link = doc.select("div#resultStats").first(); //gets the content of the tag of interest.
             //System.out.println(link.outerHtml());
             body = link.text();
             String[] words = body.split("[^\\p{L}0-9']+");
             int count = 1;
+            int aux = 0;
             while (true){
-                if ((words[count].equals("résultats")) || (words[count].equals("results")))
+                try{
+                    aux = Integer.parseInt(words[count]);
+                } catch (NumberFormatException e){
                     break;
+                }
                 results = results*1000;
-                results += results + Integer.parseInt(words[count]);
+                results += Integer.parseInt(words[count]);
+                //System.out.println(results);
                 count++;
             }
             //System.out.println(body);
+            //System.out.println(results);
         }catch(IOException e){
             System.out.println("La connexion google a echoue");
         }

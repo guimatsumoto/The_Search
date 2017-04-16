@@ -12,8 +12,14 @@
  */
 
 package com.thesearch.dictionary_manager;
-import java.util.Map;
-import java.util.HashMap;
+
+import com.thesearch.dictionary_manager.Match;
+
+import java.util.*;
+
+import static java.lang.Math.max;
+import static java.lang.String.format;
+
 
 /**
  * BkTree is the class defining the data structure used to store the dictionary words.
@@ -115,6 +121,38 @@ public final class BkTree {
                 dist[i][j] = min(dist[i - 1][j] + 1, dist[i][j - 1] + 1, dist[i - 1][j - 1] + ((a.charAt(i - 1) == b.charAt(j - 1)) ? 0 : 1));
 
         return dist[a.length()][b.length()];
+    }
+
+    public Set<Match> search(String word, int maxDist){
+        if (word == null) throw new NullPointerException();
+        if (maxDist < 0) throw new IllegalArgumentException("Distance maximale doit etre positif");
+
+        Set<Match> matches = new HashSet<>();
+
+        Queue<Node> queue = new ArrayDeque<>();
+        queue.add(_root);
+
+        while (!queue.isEmpty()){
+            Node node = queue.remove();
+            String mot = node.getElement();
+            Double freq = node.getFrequency();
+            int distance = levDist(mot, word);
+
+            if (distance < 0) throw new IllegalArgumentException(format("Distance (%d) entre les mots (%s) et (%s)", distance, word, mot));
+            if (distance <= maxDist) matches.add(new Match(mot, distance, freq));
+
+            int distSearchMin = max(distance - maxDist, 0);
+            int distSearchMax = distance + maxDist;
+
+            for (int distSearch = distSearchMin; distSearch <= distSearchMax; ++distSearch){
+                Node child = node.getChildrenNode(distSearch);
+                if (child != null)
+                    queue.add(child);
+            }
+
+        }
+
+        return matches;
     }
 }
     /**
