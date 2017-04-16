@@ -8,6 +8,8 @@ import com.thesearch.webDealer.googleExtractor;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.NumberFormat;
+import java.util.Locale;
 
 /**
  * Created by guilhermematsumoto on 15/04/17.
@@ -24,6 +26,10 @@ public class searchGui {
     private JLabel googleSuggestionLabel;
     private JTextPane googleSuggestionTextPanel;
     private JTextPane ourSuggestionTextPanel;
+    private JTextPane ourNumberofSuggestionTextPanel;
+    private JTextPane googleNumberOfResultsTextPanel;
+    private JLabel myNumberOfResultsPanel;
+    private JLabel googleNumberOfResultsPanel;
 
     private Dictionary _dict;
     private googleExtractor _extractor;
@@ -51,6 +57,16 @@ public class searchGui {
                         googleSuggestionTextPanel.setText(googleSugg);
                     else
                         googleSuggestionTextPanel.setText("Google believes your query is correct!");
+
+                    int myResults, googleResults;
+                    myResults = _extractor.extractNumberOfResults(prop.getSugg());
+                    ourNumberofSuggestionTextPanel.setText("We found approximately " + NumberFormat.getNumberInstance(Locale.US).format(myResults) + " results.");
+                    if (googleSugg != "")
+                        googleResults = _extractor.extractNumberOfResults(googleSugg);
+                    else
+                        googleResults = _extractor.extractNumberOfResults(query);
+                    googleNumberOfResultsTextPanel.setText("Google found approximately " + NumberFormat.getNumberInstance(Locale.US).format(googleResults) + " results.");
+
                 }
             }
         });

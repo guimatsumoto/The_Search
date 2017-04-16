@@ -31,8 +31,10 @@ import com.thesearch.dictionary_manager.Suggestion;
  * Stores a dictionary and all its functions.
  * Initially, the words are found in a dictionary document, generated with scowl (its a free spell checking dynamic dictionary. The frequencies, on the other
  * hand, are obtained from a file containing huge amounts of english texts, from all fields on spoken/written english.
+ *
  * Soon, to improve performance, we will need to instead of calculating occurences every time the dicitionary is created, we store occurences in the
  * dictionary file and after the last word we put the total number of words, so we can get frequencies for all words.
+ * Finally implementing this part, first we make a prototype... Project due Thursday, need to hurry.
  */
 public class Dictionary {
     private BkTree _dict = new BkTree();
@@ -90,6 +92,7 @@ public class Dictionary {
         String[] words = query.split("[^\\p{L}0-9']+");
         String[] substitutes = new String[words.length];
         for (int i = 0; i < words.length; ++i){
+            //System.out.println(words[i]);
             substitutes[i] = findMostSuitableCandidate(words[i]);
             if (i == 0 && !(words[i].toLowerCase().equals(substitutes[i])) && !(words[i].equals(substitutes[i]))) //First word of a phrase can start with a capital letter even if it's not a proper name
                 hasChanges = true;
@@ -133,13 +136,14 @@ public class Dictionary {
         }
         /**
          * We're still gonna check the next distance
-         */
+
         it = aux.iterator();
         while (it.hasNext()){
             candidate = it.next();
             if ((candidate.getFreq() >= 100000*res.getFreq()) && (!foundOnDistZero))
                 res = candidate;
         }
+        */
         if (foundOnDistZero)
             return word;
         return res.getMatch();
@@ -149,7 +153,7 @@ public class Dictionary {
      * This function will calculate word frequencies based on the file
      * passed as parameter.
      */
-    public static HashMap<String, Double> calculateFrequencies(String FreqFile){
+    public HashMap<String, Double> calculateFrequencies(String FreqFile){
         Path path = Paths.get("src/com/thesearch/dictionary_manager", FreqFile);
         BufferedReader br = null;
         HashMap<String, Double> FreqMap = new HashMap<>();
@@ -161,31 +165,13 @@ public class Dictionary {
             while((Line = br.readLine()) != null){
                 LineWords = Line.split("[^\\p{L}0-9']+");
                 WordCount += LineWords.length;
-
-                for(int i = 0; i < LineWords.length; ++i){
-                    /**
-                     * Treating a few english contractions, the rest of them would require
-                     * a semantic analysis, which we will probably do later
-
-                    switch (LineWords[i]){
-                        case "ll":  LineWords[i] = "will";
-                                    break;
-                        case "m":   LineWords[i] = "am";
-                                    break;
-                        case "ve":   LineWords[i] = "have";
-                            break;
-                        case "re":   LineWords[i] = "are";
-                            break;
-                        case "t":   LineWords[i] = "not";
-                            break;
-                    }
-                     */
-
+                for(int i = 0; i < LineWords.length; ++i) {
                     if (FreqMap.containsKey(LineWords[i]))
                         FreqMap.put(LineWords[i], FreqMap.get(LineWords[i]) + 1.0);
                     else
                         FreqMap.put(LineWords[i], 1.0);
                 }
+
             }
             //System.out.println("Unique word count: " + FreqMap.size()    );
         }catch(IOException e){

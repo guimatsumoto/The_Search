@@ -87,6 +87,7 @@ public final class BkTree {
             node.setFrequency(freq);
         }
 
+
     }
 
     /**
