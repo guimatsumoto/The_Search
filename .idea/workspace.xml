@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="33dc3c0b-45d2-498a-8d19-d0b290efe6d4" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/the_search/com/thesearch/dictionary_manager/Dictionary.class" afterPath="$PROJECT_DIR$/out/production/the_search/com/thesearch/dictionary_manager/Dictionary.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-    </list>
+    <list default="true" id="33dc3c0b-45d2-498a-8d19-d0b290efe6d4" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -75,10 +72,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="searchGui.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="searchGui.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/thesearch/appGui/searchGui.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1830">
+            <state relative-caret-position="1335">
               <caret line="136" column="5" lean-forward="false" selection-start-line="136" selection-start-column="5" selection-end-line="136" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -87,7 +84,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="searchGui.form" pinned="false" current-in-tab="true">
+      <file leaf-file-name="searchGui.form" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/thesearch/appGui/searchGui.form">
           <provider selected="true" editor-type-id="ui-designer">
             <state />
@@ -1014,16 +1011,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/thesearch/appGui/searchGui.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1830">
-          <caret line="136" column="5" lean-forward="false" selection-start-line="136" selection-start-column="5" selection-end-line="136" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/thesearch/appGui/searchGui.form">
       <provider selected="true" editor-type-id="ui-designer">
         <state />
@@ -1042,6 +1029,16 @@
         <state relative-caret-position="225">
           <caret line="15" column="79" lean-forward="false" selection-start-line="15" selection-start-column="79" selection-end-line="15" selection-end-column="79" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/thesearch/appGui/searchGui.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1335">
+          <caret line="136" column="5" lean-forward="false" selection-start-line="136" selection-start-column="5" selection-end-line="136" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
