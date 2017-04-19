@@ -27,7 +27,7 @@ public class TrigramDict {
     private Dictionary _dict;
 
     public TrigramDict(String p, String dictFile){
-        this.createFile("big-v2.txt", p);
+        //this.createFile("big-v2.txt", p);
         _trigrams = this.readTrigrams(p);
         _dict = new Dictionary(dictFile);
     }
