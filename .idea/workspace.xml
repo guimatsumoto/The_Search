@@ -19,7 +19,9 @@
       <file leaf-file-name="Dictionary.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/thesearch/dictionary_manager/Dictionary.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="630">
+
+            <state relative-caret-position="315">
+
               <caret line="42" column="10" lean-forward="false" selection-start-line="42" selection-start-column="10" selection-end-line="42" selection-end-column="10" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
@@ -52,7 +54,9 @@
       <file leaf-file-name="BkTree.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/thesearch/dictionary_manager/BkTree.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1905">
+
+            <state relative-caret-position="1665">
+
               <caret line="133" column="0" lean-forward="false" selection-start-line="133" selection-start-column="0" selection-end-line="133" selection-end-column="0" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
@@ -75,16 +79,12 @@
       <file leaf-file-name="searchGui.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/thesearch/appGui/searchGui.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2040">
+
+            <state relative-caret-position="1335">
               <caret line="136" column="5" lean-forward="false" selection-start-line="136" selection-start-column="5" selection-end-line="136" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#2457#2614#0" expanded="true" />
-                <element signature="e#2613#2614#0" expanded="true" />
-                <element signature="e#2802#4412#0" expanded="true" />
-                <element signature="e#4411#4412#0" expanded="true" />
-                <element signature="e#4689#4854#0" expanded="true" />
-                <element signature="e#4853#4854#0" expanded="true" />
+
               </folding>
             </state>
           </provider>
@@ -158,8 +158,8 @@
         <option value="$PROJECT_DIR$/src/com/thesearch/dictionary_manager/BkTree.java" />
         <option value="$PROJECT_DIR$/src/com/thesearch/dictionary_manager/Dictionary.java" />
         <option value="$PROJECT_DIR$/src/com/thesearch/webDealer/googleExtractor.java" />
-        <option value="$PROJECT_DIR$/src/com/thesearch/appGui/searchGui.form" />
         <option value="$PROJECT_DIR$/src/com/thesearch/appGui/searchGui.java" />
+        <option value="$PROJECT_DIR$/src/com/thesearch/appGui/searchGui.form" />
       </list>
     </option>
   </component>
@@ -183,9 +183,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
+
       <pane id="Scope" />
-      <pane id="Scratches" />
+
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -252,8 +252,26 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="the_search" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Projet" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value=".idea" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
+
+      <pane id="PackagesPane" />
+      <pane id="Scratches" />
+
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -956,14 +974,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/thesearch/corrector_module/StringCorrector.java" />
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="79" lean-forward="false" selection-start-line="15" selection-start-column="79" selection-end-line="15" selection-end-column="79" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/thesearch/mainApp/searchGui.java" />
     <entry file="file://$PROJECT_DIR$/src/main_search.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -991,7 +1001,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/thesearch/dictionary_manager/BkTree.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1905">
+
+        <state relative-caret-position="1665">
+
+
           <caret line="133" column="0" lean-forward="false" selection-start-line="133" selection-start-column="0" selection-end-line="133" selection-end-column="0" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
@@ -1002,13 +1015,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/thesearch/dictionary_manager/Dictionary.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="630">
+
+        <state relative-caret-position="315">
+
           <caret line="42" column="10" lean-forward="false" selection-start-line="42" selection-start-column="10" selection-end-line="42" selection-end-column="10" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="imports" expanded="true" />
           </folding>
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/thesearch/appGui/searchGui.form">
+      <provider selected="true" editor-type-id="ui-designer">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/thesearch/webDealer/googleExtractor.java">
@@ -1019,18 +1039,22 @@
         </state>
       </provider>
     </entry>
+
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="79" lean-forward="false" selection-start-line="15" selection-start-column="79" selection-end-line="15" selection-end-column="79" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/thesearch/appGui/searchGui.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2040">
+        <state relative-caret-position="1335">
           <caret line="136" column="5" lean-forward="false" selection-start-line="136" selection-start-column="5" selection-end-line="136" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2457#2614#0" expanded="true" />
-            <element signature="e#2613#2614#0" expanded="true" />
-            <element signature="e#2802#4412#0" expanded="true" />
-            <element signature="e#4411#4412#0" expanded="true" />
-            <element signature="e#4689#4854#0" expanded="true" />
-            <element signature="e#4853#4854#0" expanded="true" />
+
           </folding>
         </state>
       </provider>

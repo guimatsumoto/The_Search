@@ -9,6 +9,9 @@
 .idea/**/tasks.xml
 .idea/dictionaries
 
+.idea/workspace.xml
+
+
 # Sensitive or high-churn files:
 .idea/**/dataSources/
 .idea/**/dataSources.ids
@@ -87,3 +90,4 @@ fabric.properties
 hs_err_pid*
 
 # End of https://www.gitignore.io/api/java,intellij
+
