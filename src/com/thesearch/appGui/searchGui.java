@@ -3,7 +3,9 @@ package com.thesearch.appGui;
 import com.thesearch.dictionary_manager.Dictionary;
 import com.thesearch.dictionary_manager.Match;
 import com.thesearch.dictionary_manager.Suggestion;
+import com.thesearch.trigrams.TrigramDict;
 import com.thesearch.webDealer.googleExtractor;
+import com.thesearch.trigrams.Trigram;
 
 import javax.swing.*;
 import java.awt.*;
@@ -39,12 +41,14 @@ public class searchGui {
     private JMenu file, dict;
     private JMenuItem helpMeMenuItem, exitMenuItem, createFreqDictMenuItem, selectDictMenuItem;
 
-    private Dictionary _dict;
+    //private Dictionary _dict;
     private googleExtractor _extractor;
+    private TrigramDict _trigramDict;
 
     public searchGui() {
-        _dict = new Dictionary("english.txt", "big.txt");
+        //_dict = new Dictionary("dictfreq.txt");
         _extractor = new googleExtractor();
+        _trigramDict = new TrigramDict("trigamDict.txt" , "dictfreq.txt");
 
         menuPanel.setLayout(new BorderLayout());
 
@@ -89,26 +93,42 @@ public class searchGui {
                 String query = queryTextField.getText();
                 if (!(query.equals(""))) {
                     _extractor.generateURL(query);
-                    Suggestion prop = _dict.correctQuery(query);
+                    Suggestion prop = _trigramDict.correctWords(query);
+                    String[] words = query.split("[^\\p{L}0-9']+");
+                    //we don't consider context sensitive correction if the query doesn't have at least three words, which makes a trigram
+                    if (words.length > 2) {
+                        Suggestion s = _trigramDict.contextSensitiveCorrection(prop.getSugg(), prop.getChanges());
+                        if (!(s == null))
+                            prop = _trigramDict.contextSensitiveCorrection(prop.getSugg(), prop.getChanges());
+                    }
+
+                    if (prop == null)
+                        System.out.println("prop null");
+                    if (prop.getSugg() == null)
+                        System.out.println("prop.sugg null");
+                    System.out.println(prop.getSugg());
+                    //System.out.println("1");
+
                     String googleSugg = _extractor.extractSuggestion();
                     if (prop.getChanges())
                         ourSuggestionTextPanel.setText(prop.getSugg());
                     else
                         ourSuggestionTextPanel.setText("We believe your query is correct!");
-                    if ((googleSugg != ""))
+                    if (!(googleSugg.equals("")))
                         googleSuggestionTextPanel.setText(googleSugg);
                     else
                         googleSuggestionTextPanel.setText("Google believes your query is correct!");
 
-                    int myResults, googleResults;
+                    //System.out.println("2");
+                    long myResults, googleResults;
                     myResults = _extractor.extractNumberOfResults(prop.getSugg());
                     ourNumberofSuggestionTextPanel.setText("We found approximately " + NumberFormat.getNumberInstance(Locale.US).format(myResults) + " results.");
-                    if (googleSugg != "")
+                    if (!(googleSugg.equals("")))
                         googleResults = _extractor.extractNumberOfResults(googleSugg);
                     else
                         googleResults = _extractor.extractNumberOfResults(query);
                     googleNumberOfResultsTextPanel.setText("Google found approximately " + NumberFormat.getNumberInstance(Locale.US).format(googleResults) + " results.");
-
+                    //System.out.println("3");
                 }
             }
         });

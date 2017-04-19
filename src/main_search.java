@@ -32,7 +32,7 @@ public class main_search {
         //Time measurement code, used to measure dictionary creation time.
 
         long start = System.nanoTime();
-        Dictionary dict = new Dictionary("english.txt", "big.txt");
+        Dictionary dict = new Dictionary("dictfreq.txt");
         long elapsedTime = (System.nanoTime() - start);
         //System.out.println("Time to initialize dictionary: " + elapsedTime);
         /*

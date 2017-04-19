@@ -24,6 +24,7 @@ import static com.thesearch.dictionary_manager.BkTree.levDist;
 import com.thesearch.dictionary_manager.Match;
 import com.thesearch.dictionary_manager.Suggestion;
 
+
 /**
  * class Dictionary
  * Stores a dictionary and all its functions.
@@ -38,11 +39,11 @@ public class Dictionary {
     private BkTree _dict = new BkTree();
     final static Charset ENCODING = StandardCharsets.UTF_8;
 
-    public Dictionary(String FileName, String FreqFile) {
+    public Dictionary(String dictFreqFile) {
 
         //createFreqDict("english.txt", "big-v2.txt", "dictfreq.txt");
 
-        initializeDictWithFreq("dictfreq.txt");
+        initializeDictWithFreq(dictFreqFile);
     }
 
     private void initializeDictWithFreq(String dictFreqFile){

@@ -32,6 +32,7 @@ public class googleExtractor {
         for (i = 1; i < words.length; ++i){
             _url += "+" + words[i];
         }
+        //System.out.println(_url);
     }
 
     /**
@@ -54,6 +55,7 @@ public class googleExtractor {
         for (i = 1; i < words.length; ++i){
             _url += "+" + words[i];
         }
+        //System.out.println(_url);
     }
 
     public void setSugg(String sugg){
@@ -93,10 +95,10 @@ public class googleExtractor {
      * @param query
      * @return
      */
-    public int extractNumberOfResults(String query){
+    public long extractNumberOfResults(String query){
         String body = "";
         generateFinalURL(query);
-        int results = 0;
+        long results = 0;
         try {
             Document doc = Jsoup.connect(_url).get();
             if ((doc.select("div#resultStats").first() == null) || !(doc.select("div#resultStats").first().hasText()) || (doc.select("div#resultStats").first().text() == "") || (doc.select("div#resultStats").first().text() == null))
