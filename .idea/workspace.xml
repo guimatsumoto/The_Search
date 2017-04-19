@@ -19,7 +19,9 @@
       <file leaf-file-name="Dictionary.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/thesearch/dictionary_manager/Dictionary.java">
           <provider selected="true" editor-type-id="text-editor">
+
             <state relative-caret-position="315">
+
               <caret line="42" column="10" lean-forward="false" selection-start-line="42" selection-start-column="10" selection-end-line="42" selection-end-column="10" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
@@ -52,7 +54,9 @@
       <file leaf-file-name="BkTree.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/thesearch/dictionary_manager/BkTree.java">
           <provider selected="true" editor-type-id="text-editor">
+
             <state relative-caret-position="1665">
+
               <caret line="133" column="0" lean-forward="false" selection-start-line="133" selection-start-column="0" selection-end-line="133" selection-end-column="0" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
@@ -72,19 +76,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="searchGui.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="searchGui.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/thesearch/appGui/searchGui.java">
           <provider selected="true" editor-type-id="text-editor">
+
             <state relative-caret-position="1335">
               <caret line="136" column="5" lean-forward="false" selection-start-line="136" selection-start-column="5" selection-end-line="136" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
+
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="searchGui.form" pinned="false" current-in-tab="false">
+      <file leaf-file-name="searchGui.form" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/com/thesearch/appGui/searchGui.form">
           <provider selected="true" editor-type-id="ui-designer">
             <state />
@@ -177,7 +183,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+
       <pane id="Scope" />
+
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -260,8 +268,10 @@
           </PATH>
         </subPane>
       </pane>
+
       <pane id="PackagesPane" />
       <pane id="Scratches" />
+
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -991,7 +1001,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/thesearch/dictionary_manager/BkTree.java">
       <provider selected="true" editor-type-id="text-editor">
+
         <state relative-caret-position="1665">
+
+
           <caret line="133" column="0" lean-forward="false" selection-start-line="133" selection-start-column="0" selection-end-line="133" selection-end-column="0" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
@@ -1002,7 +1015,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/thesearch/dictionary_manager/Dictionary.java">
       <provider selected="true" editor-type-id="text-editor">
+
         <state relative-caret-position="315">
+
           <caret line="42" column="10" lean-forward="false" selection-start-line="42" selection-start-column="10" selection-end-line="42" selection-end-column="10" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
@@ -1024,6 +1039,7 @@
         </state>
       </provider>
     </entry>
+
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
@@ -1038,8 +1054,14 @@
           <caret line="136" column="5" lean-forward="false" selection-start-line="136" selection-start-column="5" selection-end-line="136" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
+
           </folding>
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/thesearch/appGui/searchGui.form">
+      <provider selected="true" editor-type-id="ui-designer">
+        <state />
       </provider>
     </entry>
   </component>
